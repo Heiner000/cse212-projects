@@ -29,6 +29,7 @@ public static class StandardDeviation {
         var variance = sumSquaredDifferences / count;
         return Math.Sqrt(variance);
     }
+    // o(n) + o(n) = o(2n) = o(n)
 
     private static double StandardDeviation2(int[] numbers) {
         var sumSquaredDifferences = 0.0;
@@ -50,6 +51,8 @@ public static class StandardDeviation {
         return Math.Sqrt(variance);
     }
 
+    // o(n^2)
+
     private static double StandardDeviation3(int[] numbers) {
         var count = numbers.Length;
         var avg = (double)numbers.Sum() / count;
@@ -62,3 +65,7 @@ public static class StandardDeviation {
         return Math.Sqrt(variance);
     }
 }
+
+// o(n)
+
+// Performance order: o(1), o(log n), o(n), o(n log n), o(n^2), o(2^n)
