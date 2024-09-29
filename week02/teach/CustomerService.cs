@@ -11,9 +11,14 @@ public class CustomerService {
         // Test Cases
 
         // Test 1
-        // Scenario: 
-        // Expected Result: 
+        // * Scenario: Ensure max size equals 10 on start, add a customer & then serve them
+        // ? Expected Result: See the customer get returned from the queue
         Console.WriteLine("Test 1");
+        var cs = new CustomerService(10);
+        Console.WriteLine(cs); // ! Output should be 10
+        cs.AddNewCustomer();
+        Console.WriteLine(cs);
+        cs.ServeCustomer();
 
         // Defect(s) Found: 
 
@@ -66,11 +71,6 @@ public class CustomerService {
     /// new record into the queue.
     /// </summary>
     private void AddNewCustomer() {
-        // Verify there is room in the service queue
-        if (_queue.Count > _maxSize) {
-            Console.WriteLine("Maximum Number of Customers in Queue.");
-            return;
-        }
 
         Console.Write("Customer Name: ");
         var name = Console.ReadLine()!.Trim();
@@ -82,12 +82,19 @@ public class CustomerService {
         // Create the customer object and add it to the queue
         var customer = new Customer(name, accountId, problem);
         _queue.Add(customer);
+
+        // Verify there is room in the service queue
+        if (_queue.Count > _maxSize) {
+            Console.WriteLine("Maximum Number of Customers in Queue.");
+            return;
+        }
     }
 
     /// <summary>
     /// Dequeue the next customer and display the information.
     /// </summary>
     private void ServeCustomer() {
+        Console.WriteLine(_queue.Count);
         _queue.RemoveAt(0);
         var customer = _queue[0];
         Console.WriteLine(customer);
