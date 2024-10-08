@@ -3,7 +3,7 @@
 /// user when the Maze object is created. The dictionary will contain the
 /// following mapping:
 ///
-/// (x,y) : [left, right, up, down]
+/// ! (x,y) : [left, right, up, down]
 ///
 /// 'x' and 'y' are integers and represents locations in the maze.
 /// 'left', 'right', 'up', and 'down' are boolean are represent valid directions
@@ -32,8 +32,17 @@ public class Maze
     /// </summary>
     public void MoveLeft()
     {
-        // FILL IN CODE
-    }
+        var newSpace = (_currX - 1, _currY);
+        if (_mazeMap.ContainsKey(newSpace)) {
+            if (_mazeMap[(_currX, _currY)][0]) {
+                _currX--;
+            } else {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        }
+        else {
+                throw new InvalidOperationException("Can't go that way!");
+    }}
 
     /// <summary>
     /// Check to see if you can move right.  If you can, then move.  If you
@@ -41,8 +50,16 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        // FILL IN CODE
-    }
+        var newSpace = (_currX + 1, _currY);
+        if (_mazeMap.ContainsKey(newSpace)) {
+            if (_mazeMap[(_currX,_currY)][1]) {
+                _currX++;
+            } else {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        } else {
+                throw new InvalidOperationException("Can't go that way!");
+    }}
 
     /// <summary>
     /// Check to see if you can move up.  If you can, then move.  If you
@@ -50,8 +67,16 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        // FILL IN CODE
-    }
+        var newSpace = (_currX, _currY - 1);
+        if (_mazeMap.ContainsKey(newSpace)) {
+            if (_mazeMap[(_currX, _currY)][2]) {
+                _currY--;
+            } else {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        } else {
+                throw new InvalidOperationException("Can't go that way!");
+    }}
 
     /// <summary>
     /// Check to see if you can move down.  If you can, then move.  If you
@@ -59,8 +84,16 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        // FILL IN CODE
-    }
+        var newSpace = (_currX, _currY + 1);
+        if (_mazeMap.ContainsKey(newSpace)) {
+            if (_mazeMap[(_currX,_currY)][3]) {
+                _currY++;
+            } else {
+                throw new InvalidOperationException("Can't go that way!");
+            }
+        } else {
+                throw new InvalidOperationException("Can't go that way!");
+    }}
 
     public string GetStatus()
     {
