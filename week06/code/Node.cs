@@ -12,6 +12,8 @@ public class Node
     public void Insert(int value)
     {
         // TODO Start Problem 1
+        if (value == Data) // avoid duplicates by checking if value matches current node's data and skipping it
+            return;
 
         if (value < Data)
         {
@@ -34,12 +36,32 @@ public class Node
     public bool Contains(int value)
     {
         // TODO Start Problem 2
-        return false;
+        if (value == Data)
+            return true;
+
+        if (value < Data)
+            return Left != null && Left.Contains(value);
+        else
+            return Right != null && Right.Contains(value);
     }
 
     public int GetHeight()
     {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        // initialize heights to 0
+        int leftHeight = 0;
+        int rightHeight = 0;
+        
+        // check and get left subtree height
+        if (Left != null) {
+            leftHeight = Left.GetHeight();
+        }
+        
+        // check and get right subtree height
+        if (Right != null) {
+            rightHeight = Right.GetHeight();
+        }
+
+        return 1 + Math.Max(leftHeight, rightHeight);
     }
 }
